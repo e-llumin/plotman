@@ -86,7 +86,7 @@ def compute_priority(phase, gb_free, n_plots):
 
 def get_archdir_freebytes(arch_cfg):
     archdir_freebytes = {}
-    df_cmd = ('ssh %s@%s df -aBK | grep " %s/"' %
+    df_cmd = ('ssh %s@%s df -a | grep " %s/"' %
         (arch_cfg.rsyncd_user, arch_cfg.rsyncd_host, arch_cfg.rsyncd_path) )
     with subprocess.Popen(df_cmd, shell=True, stdout=subprocess.PIPE) as proc:
         for line in proc.stdout.readlines():
@@ -171,7 +171,7 @@ def archive(dir_cfg, all_jobs):
 
     bwlimit = dir_cfg.archive.rsyncd_bwlimit
     throttle_arg = ('--bwlimit=%d' % bwlimit) if bwlimit else ''
-    cmd = ('rsync %s --compress-level=0 --remove-source-files -P %s %s' %
+    cmd = ('rsync %s --compress-level=0 --remove-source-files -L -P %s %s' %
             (throttle_arg, chosen_plot, rsync_dest(dir_cfg.archive, archdir)))
 
     return (True, cmd)
