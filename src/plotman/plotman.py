@@ -129,7 +129,7 @@ def main():
                 return
 
         if not args.config_subcommand:
-            print("No action requested, add 'generate' or 'path'.")
+            print("No action requested, add 'generate' or 'path' or 'splat'.")
             return
 
     config_path = configuration.get_path()
