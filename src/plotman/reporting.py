@@ -175,7 +175,7 @@ def arch_dir_report(archdir_freebytes, width, prefix=''):
     cells = ['%s:%5dGB' % (abbr_path(d, prefix), int(int(space) / plot_util.GB))
             for (d, space) in sorted(archdir_freebytes.items())]
     if not cells:
-        return ''
+        return '**No archive dirs found'
 
     n_columns = int(width / (len(max(cells, key=len)) + 3))
     tab = tt.Texttable()
