@@ -167,6 +167,7 @@ def main():
 
         # Directories report
         elif args.cmd == 'dirs':
+            print('splat!')
             print(reporting.dirs_report(jobs, cfg.directories, cfg.scheduling, get_term_width()))
 
         elif args.cmd == 'interactive':
