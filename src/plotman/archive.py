@@ -86,8 +86,10 @@ def compute_priority(phase, gb_free, n_plots):
 
 def get_archdir_freebytes(arch_cfg):
     archdir_freebytes = {}
+    print('Getting free archive space')
     df_cmd = ('ssh %s@%s df -a | grep " %s/"' %
         (arch_cfg.rsyncd_user, arch_cfg.rsyncd_host, arch_cfg.rsyncd_path) )
+    print(f"Running via ssh' : '{df_cmd}'")
     with subprocess.Popen(df_cmd, shell=True, stdout=subprocess.PIPE) as proc:
         for line in proc.stdout.readlines():
             print(f"Found via ssh' : '{line}'")
