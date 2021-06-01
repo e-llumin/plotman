@@ -90,7 +90,12 @@ def get_archdir_freebytes(arch_cfg):
         (arch_cfg.rsyncd_user, arch_cfg.rsyncd_host, arch_cfg.rsyncd_path) )
     with subprocess.Popen(df_cmd, shell=True, stdout=subprocess.PIPE) as proc:
         for line in proc.stdout.readlines():
+            if(line.startswith(" "):
+               line = "-" + line
             fields = line.split()
+            if fields[0] == b'df:':
+                # some df error
+                continue
             if fields[2] == b'-':
                 # not actually mounted
                 continue
