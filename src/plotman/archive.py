@@ -91,7 +91,8 @@ def get_archdir_freebytes(arch_cfg):
     with subprocess.Popen(df_cmd, shell=True, stdout=subprocess.PIPE) as proc:
         for line in proc.stdout.readlines():
             if line.startswith(b' '):
-               line = "-" + line
+                #  b''.join([a,b])
+               line = b'-' + line
             fields = line.split()
             if fields[0] == b'df:':
                 # some df error
