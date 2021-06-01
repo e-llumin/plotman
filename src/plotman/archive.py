@@ -94,8 +94,8 @@ def get_archdir_freebytes(arch_cfg):
             if fields[2] == b'-':
                 # not actually mounted
                 continue
-            freebytes = int(fields[2]) * 1024  # Strip the final 'K'
-            archdir = (fields[4]).decode('utf-8')
+            freebytes = int(fields[3]) * 1024  # Strip the final 'K'
+            archdir = (fields[5]).decode('utf-8')
             archdir_freebytes[archdir] = freebytes
     return archdir_freebytes
 
